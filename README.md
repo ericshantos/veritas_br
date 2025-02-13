@@ -1,4 +1,4 @@
-# br_fake_news_detector_model# BR Fake News Prediction Model
+# Sistema de Classificação de Notícias Falsas
 
 Este repositório contém um modelo de machine learning treinado para detectar fake news em português, utilizando o dataset [Fake.br-Corpus](https://github.com/roneysco/Fake.br-Corpus). O objetivo é criar uma rede neural capaz de distinguir notícias falsas de verdadeiras, auxiliando no combate à desinformação.
 
