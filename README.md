@@ -16,8 +16,8 @@ This repository contains a machine learning model trained to detect fake news in
 ## 📂 Project Structure  
 ```
 /
-├── br_fake_news_predict_model.ipynb  # Main notebook
-├── br_fake_news_predict_model.keras  # Saved trained model
+├── br_fake_news_detector_model.ipynb  # Main notebook
+├── br_fake_news_detector_model.keras  # Saved trained model
 └── Fake.br-Corpus/                   # Dataset used
 ```  
 
@@ -38,7 +38,7 @@ This repository contains a machine learning model trained to detect fake news in
 
 3. **Run the Jupyter Notebook on Google Colab or locally:**  
    - Google Colab: [Run on Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)  
-   - Locally: `jupyter notebook br_fake_news_predict_model.ipynb`  
+   - Locally: `jupyter notebook br_fake_news_detector_model.ipynb`  
 
 ## 🗂️ Data Preparation  
 
@@ -72,7 +72,7 @@ After training, the model achieved satisfactory accuracy in classifying real and
 ## 💾 Saving the Model  
 The trained model is saved in Keras format for reuse in other applications:  
 ```python
-model.save("br_fake_news_predict_model.keras")
+model.save("br_fake_news_detector_model.keras")
 ```  
 
 ## 📜 License  
