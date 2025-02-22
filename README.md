@@ -1,82 +1,83 @@
-# Sistema de Classificação de Notícias Falsas
+[🇧🇷] [Lê em português](README-pt.md)
 
-Este repositório contém um modelo de machine learning treinado para detectar fake news em português, utilizando o dataset [Fake.br-Corpus](https://github.com/roneysco/Fake.br-Corpus). O objetivo é criar uma rede neural capaz de distinguir notícias falsas de verdadeiras, auxiliando no combate à desinformação.
+# Fake News Classification System  
 
-## 📌 Tecnologias Utilizadas
-- Python
-- Pandas
-- TensorFlow/Keras
-- Scikit-learn
-- SpaCy
-- Unidecode
-- Google Colab
+This repository contains a machine learning model trained to detect fake news in Portuguese, using the [Fake.br-Corpus](https://github.com/roneysco/Fake.br-Corpus) dataset. The goal is to create a neural network capable of distinguishing fake news from real news, helping to combat misinformation.  
 
-## 📂 Estrutura do Projeto
+## 📌 Technologies Used  
+- Python  
+- Pandas  
+- TensorFlow/Keras  
+- Scikit-learn  
+- SpaCy  
+- Unidecode  
+- Google Colab  
+
+## 📂 Project Structure  
 ```
 /
-├── br_fake_news_predict_model.ipynb  # Notebook principal
-├── br_fake_news_predict_model.keras  # Modelo treinado salvo
-└── Fake.br-Corpus/                   # Dataset utilizado
-```
+├── br_fake_news_predict_model.ipynb  # Main notebook
+├── br_fake_news_predict_model.keras  # Saved trained model
+└── Fake.br-Corpus/                   # Dataset used
+```  
 
-## 🔍 Como Executar o Projeto
+## 🔍 How to Run the Project  
 
-1. **Clone o repositório e instale as dependências:**
+1. **Clone the repository and install dependencies:**  
 ```bash
 !git clone https://github.com/ericshantos/br_fake_news_detector_model.git
-```
+```  
 
-2. **Baixe o dataset Fake.br-Corpus:**
+2. **Download the Fake.br-Corpus dataset:**  
 
-> Ao execultar a primeira célula do caderno, é possível fazer o download do dataset
+> By running the first cell of the notebook, you can download the dataset  
 
 ```bash
 !git clone https://github.com/roneysco/Fake.br-Corpus
-```
+```  
 
-1. **Execute o Jupyter Notebook no Google Colab ou localmente:**
-   - Google Colab: [Executar no Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)
-   - Localmente: `jupyter notebook br_fake_news_predict_model.ipynb`
+3. **Run the Jupyter Notebook on Google Colab or locally:**  
+   - Google Colab: [Run on Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)  
+   - Locally: `jupyter notebook br_fake_news_predict_model.ipynb`  
 
-## 🗂️ Preparação dos Dados
+## 🗂️ Data Preparation  
 
-O dataset Fake.br-Corpus possui notícias reais e falsas em português, organizadas em arquivos de texto. O script realiza:
-- **Leitura e extração das notícias** (fake e reais)
-- **Limpeza dos textos** (remoção de stopwords, pontuação e acentuação)
-- **Tokenização** para transformar palavras em números
-- **Divisão do dataset** em treinamento (80%) e teste (20%)
+The Fake.br-Corpus dataset contains real and fake news articles in Portuguese, organized into text files. The script performs:  
+- **Reading and extracting news** (fake and real)  
+- **Text cleaning** (removal of stopwords, punctuation, and accents)  
+- **Tokenization** to convert words into numbers  
+- **Dataset splitting** into training (80%) and testing (20%)  
 
-## 📊 Construção do Modelo
+## 📊 Model Construction  
 
-A rede neural implementada utiliza:
-- **Camada de Embedding** para transformar palavras em vetores densos
-- **Três camadas LSTM** para aprendizado de padrões textuais
-- **Camadas de Dropout** para evitar overfitting
-- **Camada densa com ativação sigmoid** para classificação binária
+The implemented neural network uses:  
+- **Embedding Layer** to transform words into dense vectors  
+- **Three LSTM layers** for learning textual patterns  
+- **Dropout Layers** to prevent overfitting  
+- **Dense layer with sigmoid activation** for binary classification  
 
-## ⚙️ Treinamento e Avaliação
+## ⚙️ Training and Evaluation  
 
-O modelo foi treinado com os seguintes parâmetros:
-- **Épocas**: 5
-- **Batch size**: 128
-- **Otimização**: Adam
-- **Loss function**: Binary Crossentropy
+The model was trained with the following parameters:  
+- **Epochs**: 5  
+- **Batch size**: 128  
+- **Optimization**: Adam  
+- **Loss function**: Binary Crossentropy  
 
-### 🎯 Resultados
-Após o treinamento, o modelo atingiu uma precisão satisfatória ao classificar notícias reais e falsas. Alcançando o valor de acurácia de 95% sobre o conjunto de teste:
+### 🎯 Results  
+After training, the model achieved satisfactory accuracy in classifying real and fake news, reaching an accuracy of 93% on the test set:  
 
-![](./assets/result.png)
+![](./assets/result.png)  
 
-## 💾 Salvando o Modelo
-O modelo treinado é salvo no formato Keras para ser reutilizado em outras aplicações:
+## 💾 Saving the Model  
+The trained model is saved in Keras format for reuse in other applications:  
 ```python
 model.save("br_fake_news_predict_model.keras")
-```
+```  
 
-## 📜 Licença
+## 📜 License  
 
-Este projeto está licenciado sob a MIT License. Consulte o arquivo LICENSE para mais detalhes.
+This project is licensed under the MIT License. See the LICENSE file for more details.  
 
----
-**Criado por [Eric dos Santos](https://github.com/ericshantos)** 🚀
-
+---  
+**Created by [Eric dos Santos](https://github.com/ericshantos)** 🚀  
