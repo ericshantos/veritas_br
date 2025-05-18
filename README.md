@@ -16,8 +16,8 @@ This repository contains a machine learning model trained to detect fake news in
 ## 📂 Project Structure  
 ```
 /
-├── br_fake_news_detector_model.ipynb  # Main notebook
-├── br_fake_news_detector_model.keras  # Saved trained model
+├── veritas.ipynb  # Main notebook
+├── veritas.keras  # Saved trained model
 └── Fake.br-Corpus/                   # Dataset used
 ```  
 
@@ -25,7 +25,7 @@ This repository contains a machine learning model trained to detect fake news in
 
 1. **Clone the repository and install dependencies:**  
 ```bash
-!git clone https://github.com/ericshantos/br_fake_news_detector_model.git
+!git clone https://github.com/ericshantos/veritas-br.git
 ```  
 
 2. **Download the Fake.br-Corpus dataset:**  
