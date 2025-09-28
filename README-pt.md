@@ -75,6 +75,12 @@ O modelo treinado é salvo no formato Keras para ser reutilizado em outras aplic
 model.save("br_fake_news_predict_model.keras")
 ```
 
+## 💐 Agradecimentos
+
+Dedico a construção deste modelo a todos os meus professores do Ensino Médio, dos quais, de todos os ensinamentos que me transmitiram, o senso crítico foi primordial para fundamentar esta aplicação.
+
+Uma menção especial à professora Winola Cunha, que, por diversas vezes, me instruiu a prestar atenção na aula de morfossintaxe, pois eu precisaria disso um dia.
+
 ## 📜 Licença
 
 Este projeto está licenciado sob a MIT License. Consulte o arquivo LICENSE para mais detalhes.

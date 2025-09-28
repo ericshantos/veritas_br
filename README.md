@@ -75,9 +75,17 @@ The trained model is saved in Keras format for reuse in other applications:
 model.save("br_fake_news_detector_model.keras")
 ```  
 
+## 💐 thanks
+
+I dedicate the construction of this model to all my high school teachers, from whom, among all the lessons they taught me, critical thinking was paramount in shaping this application.
+
+A special mention to Professor Winola Cunha, who, on numerous occasions, instructed me to pay attention in the morphosyntax class, as I would one day need it.
+
 ## 📜 License  
 
 This project is licensed under the MIT License. See the LICENSE file for more details.  
+
+## 
 
 ---  
 **Created by [Eric dos Santos](https://github.com/ericshantos)** 🚀  
