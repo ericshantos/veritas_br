@@ -79,7 +79,7 @@ model.save("br_fake_news_detector_model.keras")
 
 I dedicate the construction of this model to all my high school teachers, from whom, among all the lessons they taught me, critical thinking was paramount in shaping this application.
 
-A special mention to Professor Winola Cunha, who, on numerous occasions, instructed me to pay attention in the morphosyntax class, as I would one day need it.
+A special mention to Professor Winola Cunha, who, on numerous occasions, instructed me to pay attention in the morphosyntax class, as I would one day need it (and she was right).
 
 ## 📜 License  
 
