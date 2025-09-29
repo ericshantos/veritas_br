@@ -16,8 +16,8 @@ This repository contains a machine learning model trained to detect fake news in
 ## 📂 Project Structure  
 ```
 /
-├── veritas.ipynb  # Main notebook
-├── veritas.keras  # Saved trained model
+├── veritas_br.ipynb  # Main notebook
+├── veritas_br.keras  # Saved trained model
 └── Fake.br-Corpus/                   # Dataset used
 ```  
 
@@ -25,7 +25,7 @@ This repository contains a machine learning model trained to detect fake news in
 
 1. **Clone the repository and install dependencies:**  
 ```bash
-!git clone https://github.com/ericshantos/veritas-br.git
+!git clone https://github.com/ericshantos/veritas_br.git
 ```  
 
 2. **Download the Fake.br-Corpus dataset:**  
@@ -38,7 +38,7 @@ This repository contains a machine learning model trained to detect fake news in
 
 3. **Run the Jupyter Notebook on Google Colab or locally:**  
    - Google Colab: [Run on Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)  
-   - Locally: `jupyter notebook br_fake_news_detector_model.ipynb`  
+   - Locally: `jupyter notebook veritas_br.ipynb`  
 
 ## 🗂️ Data Preparation  
 
@@ -72,7 +72,7 @@ After training, the model achieved satisfactory accuracy in classifying real and
 ## 💾 Saving the Model  
 The trained model is saved in Keras format for reuse in other applications:  
 ```python
-model.save("br_fake_news_detector_model.keras")
+model.save("veritas-lstm-ptbr.keras")
 ```  
 
 ## 💐 thanks
@@ -83,7 +83,7 @@ A special mention to Professor Winola Cunha, who, on numerous occasions, instruc
 
 ## 📜 License  
 
-This project is licensed under the MIT License. See the LICENSE file for more details.  
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.  
 
 ## 
 

@@ -16,8 +16,8 @@ Este repositório contém um modelo de machine learning treinado para detectar f
 ## 📂 Estrutura do Projeto
 ```
 /
-├── br_fake_news_predict_model.ipynb  # Notebook principal
-├── br_fake_news_predict_model.keras  # Modelo treinado salvo
+├── veritas_br.ipynb  # Notebook principal
+├── veritas_br.keras  # Modelo treinado salvo
 └── Fake.br-Corpus/                   # Dataset utilizado
 ```
 
@@ -25,7 +25,7 @@ Este repositório contém um modelo de machine learning treinado para detectar f
 
 1. **Clone o repositório e instale as dependências:**
 ```bash
-!git clone https://github.com/ericshantos/br_fake_news_detector_model.git
+!git clone https://github.com/ericshantos/veritas_br.git
 ```
 
 2. **Baixe o dataset Fake.br-Corpus:**
@@ -38,7 +38,7 @@ Este repositório contém um modelo de machine learning treinado para detectar f
 
 1. **Execute o Jupyter Notebook no Google Colab ou localmente:**
    - Google Colab: [Executar no Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)
-   - Localmente: `jupyter notebook br_fake_news_predict_model.ipynb`
+   - Localmente: `jupyter notebook veritas_br.ipynb`
 
 ## 🗂️ Preparação dos Dados
 
@@ -72,7 +72,7 @@ Após o treinamento, o modelo atingiu uma precisão satisfatória ao classificar
 ## 💾 Salvando o Modelo
 O modelo treinado é salvo no formato Keras para ser reutilizado em outras aplicações:
 ```python
-model.save("br_fake_news_predict_model.keras")
+model.save("veritas-lstm-ptbr.keras")
 ```
 
 ## 💐 Agradecimentos
@@ -83,7 +83,7 @@ Uma menção especial à professora Winola Cunha, que, por diversas vezes, me in
 
 ## 📜 Licença
 
-Este projeto está licenciado sob a MIT License. Consulte o arquivo LICENSE para mais detalhes.
+Este projeto está licenciado sob a MIT License. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
 ---
 **Criado por [Eric dos Santos](https://github.com/ericshantos)** 🚀
