@@ -2,9 +2,9 @@
 
 # 🧠 Sistema de Classificação de Notícias Falsas (PT-BR)
 
-Este repositório contém um modelo de machine learning para detecção de fake news em português, utilizando as base de dados [Fake.br-Corpus](https://github.com/roneysco/Fake.br-Corpus), [FakeTrue.br](https://github.com/jpchav98/FakeTrue.Br) e [FakeRecogna](https://github.com/Gabriel-Lino-Garcia/FakeRecogna).
+O VeritasBR é um sistema híbrido de deep learning para detecção de fake news em português, combinando o poder semântico do BERT com a modelagem sequencial das redes BiLSTM.
 
-A solução evolui de abordagens clássicas com LSTM para o uso de modelos baseados em Transformers, como o BERT, permitindo capturar melhor o contexto semântico das notícias.
+O projeto foi desenvolvido com o objetivo de combater a desinformação em língua portuguesa utilizando técnicas modernas de Processamento de Linguagem Natural (PLN) e arquiteturas baseadas em Transformers.
 
 ---
 
@@ -12,157 +12,372 @@ A solução evolui de abordagens clássicas com LSTM para o uso de modelos basea
 
 O modelo treinado está disponível publicamente no Hugging Face Hub:
 
-👉 https://huggingface.co/ericshantos/veritas-bert-ptbr/
+👉 [https://huggingface.co/ericshantos/veritasseq/](https://huggingface.co/ericshantos/veritasseq/)
 
 ---
 
-## 🚀 Objetivo
+# 🚀 Objetivo
 
-Desenvolver um sistema capaz de classificar automaticamente notícias como **verdadeiras** ou **falsas**, auxiliando no combate à desinformação em língua portuguesa.
+Desenvolver um sistema automático de classificação de notícias capaz de identificar se uma notícia é **verdadeira** ou **falsa** em português.
+
+O projeto possui foco em:
+
+* Compreensão semântica textual.
+* Análise contextual sequencial.
+* Generalização robusta através da expansão de dados.
+* Aplicabilidade real no combate à desinformação.
 
 ---
 
-## 🧪 Tecnologias Utilizadas
+# 🧪 Tecnologias Utilizadas
 
 * Python
-* Pandas
 * PyTorch
+* Pandas
+* NumPy
 * Scikit-learn
+* Hugging Face Transformers
 * Jupyter Notebook
-* Hugging Face Transformers (BERT)
+* BERTimbau
+* BiLSTM
 
 ---
 
-## 📂 Dataset (Expansão de Dados)
-A versão atual do projeto utiliza uma base consolidada de três grandes fontes, triplicando o volume de dados original para garantir maior poder de generalização:
+# 📈 Evolução do Projeto VeritasBR
 
-| Fonte | Descrição |
-| :--- | :--- |
-| **Fake.br-Corpus** | Dataset de referência com notícias reais e falsas. |
-| **FakeTrue.br** | Base complementar de notícias em português. |
-| **FakeRecogna** | Dataset expandido para maior diversidade de temas. |
+O VeritasBR passou por diversas evoluções arquiteturais ao longo do desenvolvimento, buscando melhorar continuamente a compreensão contextual e semântica na classificação de fake news.
 
-* **Volume Total:** ~22.684 notícias (anteriormente ~7.000).
-* **Distribuição:** 90% treino / 10% teste com amostragem estratificada.
+## 🥇 Fase 1 — LSTM Tradicional
 
----
+As primeiras versões do projeto utilizavam redes LSTM (Long Short-Term Memory).
 
-## 🧠 Arquitetura do Modelo (BERT)
-O modelo utiliza o **BERTimbau** (BERT base para Português) como base, com uma cabeça de classificação personalizada:
+O objetivo inicial era validar se arquiteturas recorrentes seriam capazes de aprender padrões linguísticos em notícias falsas em português.
 
-* **Encoder:** `neuralmind/bert-base-portuguese-cased`.
-* **Cabeça de Classificação:**
-    * Linear (Hidden Size → 32) + Ativação GELU.
-    * Dropout (0.2) para regularização.
-    * Linear (32 → 16) + Ativação GELU.
-    * Linear (16 → 1) para saída binária.
-* **Otimização:** Adam com Learning Rate de $5e^{-5}$.
+### Características
 
-## ⚙️ Pipeline de Dados
-O processamento agora conta com extratores específicos para cada base (`BaseExtractor`):
-1.  **Extração:** Parsing de arquivos `.txt` (Fake.br), `.csv` (FakeTrue) e `.xlsx` (FakeRecogna).
-2.  **Limpeza:** Remoção de valores nulos e normalização de rótulos.
-3.  **Tokenização:** WordPiece (BERT) com `max_length=256`.
-4.  **Dataloader:** Implementação com `pin_memory` e `prefetch_factor` para otimização de GPU.
+* Processamento sequencial do texto.
+* Aprendizado contextual através de memória recorrente.
+* Representação textual baseada em embeddings.
+* Arquitetura leve e computacionalmente eficiente.
+
+### Limitações
+
+Apesar dos bons resultados obtidos, arquiteturas recorrentes tradicionais ainda apresentavam dificuldades em:
+
+* Compreensão semântica profunda.
+* Dependências contextuais de longa distância.
+* Ambiguidades linguísticas.
+* Representações contextuais mais ricas.
 
 ---
 
-## ⚙️ Treinamento
+## 🥈 Fase 2 — BERT Baseado em Transformers
 
-### 📌 Hiperparâmetros (LSTM)
+Para superar as limitações das redes recorrentes tradicionais, o VeritasBR evoluiu para arquiteturas Transformer utilizando o BERTimbau.
 
-* Épocas: 5
-* Batch size: 128
-* Otimizador: Adam
-* Loss: Binary Crossentropy
+A introdução do BERT representou um grande salto na capacidade de compreensão semântica.
 
-### 📌 BERT (Fine-tuning)
+### Melhorias Obtidas
 
-* Learning rate: ~2e-5
-* Batch size: 32
-* Uso de GPU recomendado
+* Embeddings contextuais bidirecionais.
+* Representação semântica profunda.
+* Melhor interpretação de linguagem ambígua.
+* Maior percepção contextual.
 
----
+### Por que BERT?
 
-## 📊 Resultados
+Diferentemente de embeddings tradicionais, o BERT gera representações dinâmicas para cada token de acordo com o contexto da sentença.
 
-O modelo LSTM atingiu aproximadamente **97% de acurácia** no conjunto de teste.
-
-> Modelos baseados em BERT apresentam potencial de melhoria significativa ao capturar melhor o contexto linguístico.
-
-![Resultado](./assets/result.png)
+Isso permitiu que o VeritasBR compreendesse melhor estruturas linguísticas presentes em fake news e padrões sutis de manipulação textual.
 
 ---
 
-## 🚀 Como Utilizar o Modelo
+## 🥉 Fase 3 — Arquitetura Híbrida BERT + BiLSTM
 
-O modelo pode ser carregado diretamente via Transformers:
+A versão atual do VeritasBR adota uma arquitetura híbrida que combina:
 
-```python
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+* BERTimbau para codificação semântica.
+* BiLSTM (Bidirectional LSTM) para refinamento sequencial.
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+A motivação dessa abordagem é que, embora o BERT capture contexto semântico de forma extremamente eficiente, camadas BiLSTM ainda podem aprimorar dependências temporais e relações sequenciais.
 
-model_name = "neuralmind/bert-base-portuguese-cased"
+Essa combinação permite:
 
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+* Preservar embeddings ricos gerados pelo Transformer.
+* Melhorar a memória contextual sequencial.
+* Aumentar a consistência da classificação.
+* Modelar padrões sutis de desinformação.
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    model_name,
-    num_labels=2  
-)
+A arquitetura híbrida representa atualmente o estado mais avançado do projeto.
 
-state_dict = torch.load("veritas-bert-ptbr.pth", map_location=device)
+---
 
-model.load_state_dict(state_dict)
+# 📂 Expansão do Dataset
 
-model.to(device)
-model.eval()
+A versão atual do VeritasBR utiliza uma base consolidada composta por três grandes datasets de fake news em português:
+
+| Fonte          | Descrição                                               |
+| -------------- | ------------------------------------------------------- |
+| Fake.br-Corpus | Dataset de referência contendo notícias reais e falsas. |
+| FakeTrue.Br    | Base complementar de notícias falsas em português.      |
+| FakeRecogna    | Dataset expandido com maior diversidade temática.       |
+
+## 📊 Estatísticas
+
+* Volume total: ~22.684 notícias.
+* Divisão estratificada:
+
+  * 90% treino
+  * 10% teste
+
+Essa expansão aumentou significativamente a capacidade de generalização semântica do modelo.
+
+---
+
+# 🧠 Arquitetura do Modelo — BERT + BiLSTM
+
+O VeritasBR utiliza uma arquitetura híbrida composta por:
+
+* BERTimbau para extração semântica profunda.
+* Camadas BiLSTM para refinamento contextual sequencial.
+
+## 🔍 Fluxo da Arquitetura
+
+```text
+Texto de Entrada
+        ↓
+Tokenizador BERT
+        ↓
+Encoder BERTimbau
+        ↓
+Embeddings Contextuais
+        ↓
+Camada BiLSTM
+        ↓
+Pooling / Camadas Densas
+        ↓
+Classificação Binária
+```
+
+## ⚙️ Componentes
+
+### Encoder
+
+* `neuralmind/bert-base-portuguese-cased`
+
+### Camada Sequencial
+
+* Bidirectional LSTM (BiLSTM)
+* Captura dependências de longo alcance em ambas as direções.
+
+### Cabeça de Classificação
+
+* Camadas densas.
+* Ativação GELU.
+* Regularização com Dropout.
+* Saída binária.
+
+### Otimização
+
+* Adam Optimizer.
+* Fine-tuning supervisionado.
+* Binary Cross Entropy Loss.
+
+---
+
+# ⚙️ Pipeline de Dados
+
+O projeto implementa um pipeline modular de extração e pré-processamento.
+
+## 📥 Extração
+
+Extratores personalizados processam:
+
+* `.txt` (Fake.br-Corpus)
+* `.csv` (FakeTrue.Br)
+* `.xlsx` (FakeRecogna)
+
+## 🧹 Pré-processamento
+
+* Remoção de valores nulos.
+* Normalização de labels.
+* Padronização textual.
+
+## 🔤 Tokenização
+
+* WordPiece Tokenizer do BERT.
+* Comprimento máximo: `256` tokens.
+
+## 🚚 Otimizações do DataLoader
+
+* `pin_memory=True`
+* `prefetch_factor`
+* Estratégias otimizadas para GPU.
+
+---
+
+# 🏋️ Treinamento
+
+## 📌 Configuração de Fine-Tuning
+
+| Hiperparâmetro  | Valor                |
+| --------------- | -------------------- |
+| Learning Rate   | ~2e-5                |
+| Batch Size      | 32                   |
+| Otimizador      | Adam                 |
+| Função de Perda | Binary Cross Entropy |
+| GPU             | Recomendado          |
+
+---
+
+# 📊 Resultados
+
+A arquitetura híbrida BERT + BiLSTM melhora significativamente a compreensão contextual em comparação com abordagens tradicionais baseadas apenas em LSTM.
+
+## ✨ Melhorias Obtidas
+
+* Melhor compreensão semântica.
+* Refinamento sequencial bidirecional.
+* Maior consistência contextual.
+* Classificação mais robusta.
+
+Arquiteturas LSTM tradicionais continuam eficientes, porém a integração com BERT amplia significativamente a representação linguística.
+
+![Result](./assets/result.png)
+
+---
+
+# 🚀 Como Utilizar o Modelo
+
+O modelo híbrido treinado do VeritasBR está disponível publicamente no Hugging Face Hub no formato `.pth`.
+
+## 📥 Download dos Pesos
+
+Baixe os pesos do modelo em:
+
+👉 [https://huggingface.co/ericshantos/veritasseq](https://huggingface.co/ericshantos/veritasseq)
+
+Arquivo de pesos:
+
+```text
+veritasseq_v3_0.pth
 ```
 
 ---
 
+## 🐍 Criando um Ambiente Conda (Máquina Nativa)
 
-## ▶️ Como Executar
+Caso esteja executando o projeto localmente, recomenda-se criar um ambiente isolado utilizando Conda.
 
-1. Clone o repositório:
+### 1️⃣ Criar o ambiente
 
 ```bash
-git clone https://github.com/ericshantos/veritas_br.git
+conda create -n veritas python=3.11
 ```
 
-2. Execute o notebook:
-
-* [Executar no Google Colab](https://colab.research.google.com/github/ericshantos/br_fake_news_detector_model/blob/main/br_fake_news_detector_model.ipynb)
-* Ou localmente:
+### 2️⃣ Ativar o ambiente
 
 ```bash
-jupyter notebook veritas_br.ipynb
+conda activate veritas
+```
+
+### 3️⃣ Instalar as dependências
+
+```bash
+conda install torch matplotlib numpy pytorch sklearn
 ```
 
 ---
 
-## 💡 Insights do Projeto
+# ▶️ Executando o Projeto
 
-* Modelos LSTM são eficientes, mas limitados semanticamente
-* BERT melhora significativamente a compreensão de contexto
-* Tokenização é um fator crítico para performance
+## 1️⃣ Clone o repositório
+
+```bash
+git clone https://github.com/ericshantos/veritasBR.git
+```
+
+## 2️⃣ Crie e ative o ambiente Conda
+
+```bash
+conda create -n veritas python=3.11
+conda activate veritas
+```
+
+## 3️⃣ Ative o ambiente virtual
+
+```bash
+conda activate veritas
+```
+
+## 4️⃣ Baixe os pesos do modelo
+
+Baixe:
+
+```text
+veritasseq_v3_0.pth
+```
+
+no Hugging Face Hub e coloque o arquivo dentro do diretório do projeto.
+
+## 5️⃣ Abra o notebook de treinamento
+
+```bash
+jupyter notebook veritasBR.ipynb
+```
 
 ---
 
-## 💐 Agradecimentos
+# 💡 Insights da Pesquisa
 
-Dedico este projeto aos meus professores do Ensino Médio, que contribuíram para o desenvolvimento do meu senso crítico.
+## 🔹 Por que combinar BERT e BiLSTM?
 
-Menção especial à professora Winola Cunha, que reforçou a importância da morfossintaxe — e estava absolutamente certa.
+Embora o BERT já capture informações contextuais profundas, camadas BiLSTM conseguem refinar dependências sequenciais e melhorar a consistência da classificação.
+
+Essa abordagem híbrida é especialmente eficiente para:
+
+* Sequências textuais longas.
+* Notícias linguisticamente ambíguas.
+* Fake news com manipulações semânticas sutis.
+
+## 🔹 Principais Vantagens
+
+* Melhor representação semântica.
+* Análise sequencial bidirecional.
+* Memória contextual mais robusta.
+* Maior robustez geral.
 
 ---
 
-## 📜 Licença
+# 🔬 Melhorias Futuras
 
-Este projeto está sob a licença MIT. Veja [LICENSE](./LICENSE) para mais detalhes.
+Possíveis evoluções futuras incluem:
+
+* Multi-task Learning.
+* Enriquecimento semântico.
+* Técnicas de Explainable AI.
+* Visualização de atenção.
+* Integração com grafos de conhecimento.
+* Filtragem de desinformação baseada em reinforcement learning.
 
 ---
 
-**Criado por Eric dos Santos 🚀**
+# 💐 Agradecimentos
+
+Dedico este projeto aos professores e mentores que contribuíram para minha formação em tecnologia, pensamento crítico e pesquisa científica.
+
+Agradeço especialmente às pessoas que incentivaram a curiosidade, o questionamento e a busca pelo conhecimento.
+
+---
+
+# 📜 Licença
+
+Este projeto está licenciado sob a licença MIT.
+
+Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+# 👨‍💻 Autor
+
+Desenvolvido por Eric dos Santos 🚀
